@@ -57,6 +57,7 @@ namespace ExactPatternMatching
                 }
             }
 
+            Console.WriteLine();
             Console.WriteLine(new string('-', 32));
             Console.WriteLine();
         }

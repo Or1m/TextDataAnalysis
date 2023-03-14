@@ -32,7 +32,7 @@ namespace ExactPatternMatching
                 alphaDict[alphabet[i]] = i;
 #endif
 
-            DFAs = new List<int[,]>();
+            DFAs = new List<int[,]>(patternsLength);
 
             for (int i = 0; i < patternsLength; i++)
                 DFAs.Add(CreateDFA(patterns[i]));
@@ -54,7 +54,7 @@ namespace ExactPatternMatching
 
             watch.Stop();
 
-            Console.WriteLine($"[DFA] Elapsed {watch.ElapsedMilliseconds} ms\n");
+            Console.WriteLine($"[DFA] Elapsed {watch.ElapsedMilliseconds} ms.\n");
             PrintResults(printType);
         }
         protected override List<int> DoSearchAlgorithm(string text, string pattern)

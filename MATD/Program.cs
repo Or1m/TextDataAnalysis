@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 
 namespace ExactPatternMatching
@@ -12,8 +14,13 @@ namespace ExactPatternMatching
 
         static void Main()
         {
+#if DEBUG
             string text = File.ReadAllText(fileName);
             var patterns = Utils.GetRandomPatterns(text, 10);
+#else
+            string text = "ABABDABACDABABCABAB";
+            var patterns = new List<string>() { "BAB", "AAA", "AAACAAAA", "ABCDE", "AABAACAABAA", "AAACAAAAAC", "AAABAAA"};
+#endif
 
             SearchEngine engine;
 
@@ -23,11 +30,11 @@ namespace ExactPatternMatching
             engine = new DFASearchEngine(text, patterns);
             engine.DoSomeMagic(EPrintType.None);
 
-            //engine = new KMPSearchEngine(text, patterns);
-            //engine.DoSomeMagic(EPrintType.None);
+            engine = new KMPSearchEngine(text, patterns);
+            engine.DoSomeMagic(EPrintType.None);
 
-            //engine = new BMHSearchEngine(text, patterns);
-            //engine.DoSomeMagic(EPrintType.None);
+            engine = new BMHSearchEngine(text, patterns);
+            engine.DoSomeMagic(EPrintType.None);
 
             Console.ReadLine();
         }

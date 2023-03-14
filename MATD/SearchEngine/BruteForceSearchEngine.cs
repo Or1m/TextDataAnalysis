@@ -20,7 +20,7 @@ namespace ExactPatternMatching
 
             watch.Stop();
 
-            Console.WriteLine($"[Brute Force] Elapsed {watch.ElapsedMilliseconds} ms\n");
+            Console.WriteLine($"[Brute Force] Elapsed {watch.ElapsedMilliseconds} ms.\n");
             PrintResults(printType);
         }
         protected override List<int> DoSearchAlgorithm(string text, string pattern)
