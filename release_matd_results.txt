@@ -1,0 +1,19 @@
+ENG:
+
+[Brute Force] Elapsed 85132 ms.
+
+[DFA] Elapsed 124173 ms.
+
+[KMP] Elapsed 98791 ms.
+
+[BMH] Elapsed 35224 ms.
+
+DNA:
+
+[Brute Force] Elapsed 170453 ms.
+
+[DFA] Elapsed 123906 ms.
+
+[KMP] Elapsed 176269 ms.
+
+[BMH] Elapsed 107241 ms.

@@ -20,7 +20,10 @@ namespace ExactPatternMatching
                 int length = random.Next(MinPatternLength, MaxPatternLength + 1);
                 int idx = random.Next(0, textLength - length);
 
-                picks.Add(text.Substring(idx, length));
+                var pick = text.Substring(idx, length);
+
+                if (!picks.Contains(pick))
+                    picks.Add(pick);
             }
 
             return picks;

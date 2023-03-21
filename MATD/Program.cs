@@ -15,7 +15,7 @@ namespace ExactPatternMatching
         static void Main()
         {
 #if DEBUG
-            string text = File.ReadAllText(fileName);
+            string text = File.ReadAllText(fileName); // Da sa aj po bytoch a 0-255 tabulka, ked sa unicode znak rozdeli na viac nezaujima ma zo
             var patterns = Utils.GetRandomPatterns(text, 10);
 #else
             string text = "ABABDABACDABABCABAB";
