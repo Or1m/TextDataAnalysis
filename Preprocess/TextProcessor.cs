@@ -1,6 +1,7 @@
 ﻿using Poseidon.Analysis;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
@@ -66,7 +67,7 @@ namespace Preprocess
 
         private List<string> GetLowerAlphanumWords(string str)
         {
-            return Regex.Replace(str, "[^a-zA-Z0-9]", " ")
+            return Regex.Replace(str, "[^a-zA-Z0-9 ']", " ")
                 .ToLower()
                 .Split(' ')
                 .Where(s => !string.IsNullOrWhiteSpace(s))
@@ -74,12 +75,22 @@ namespace Preprocess
         }
         private void RemoveStopWords(List<string> words, out List<string> filteredWords)
         {
-            filteredWords = new List<string>(3/4 * words.Count);
+            var length = words.Count;
+            filteredWords = new List<string>(3/4 * length);
 
-            foreach (var word in words)
+            for (int i = 0; i < length; i++)
             {
-                if (!stopWords.Contains(word))
-                    filteredWords.Add(word);
+                var word = words[i];
+
+                if (stopWords.Contains(word))
+                    continue;
+
+                //Optional
+                var apostropheIdx = word.IndexOf('\'');
+                if (apostropheIdx >= 0)
+                    word = word.Remove(apostropheIdx, 1);
+
+                filteredWords.Add(word);
             }
         }
         private void ApplyPorterStemmer(List<string> filteredWords, bool verbose = false)
