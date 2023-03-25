@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{C972BD23-CA6E-49CB-9162-A5E4D5C82D85}</ProjectGuid>
+    <ProjectGuid>{58B0DBBC-A471-4C62-9E55-D18EB568EE73}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>ApproximatePatternMatching</RootNamespace>
-    <AssemblyName>ApproximatePatternMatching</AssemblyName>
+    <RootNamespace>Preprocess</RootNamespace>
+    <AssemblyName>Preprocess</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -43,8 +43,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="PorterStemmer.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TextProcessor.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

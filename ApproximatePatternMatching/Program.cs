@@ -1,100 +1,64 @@
-﻿//using System;
-//using System.Collections.Generic;
-//using System.Linq;
+﻿using System;
+using System.Collections.Generic;
 
-//class NFA
-//{
-//    private readonly int[,] transitions;
-//    private readonly int startState;
-//    private readonly int[] finalStates;
-//    private readonly int alphabetSize;
+namespace ApproximatePatternMatching
+{
+    public class Program
+    {
+        public static void Main()
+        {
+            const int maxErrors = 2;
+            
+            string[] patterns = new string[] { "survey", "survex", "lurvex", "lurvix" };
+            string text = "survey";
 
-//    public NFA(int[,] transitions, int startState, int[] finalStates, int alphabetSize)
-//    {
-//        this.transitions = transitions;
-//        this.startState = startState;
-//        this.finalStates = finalStates;
-//        this.alphabetSize = alphabetSize;
-//    }
+            var results = new List<(string pattern, int errors)>();
+            
+            for (int i = 0; i < patterns.Length; i++)
+            {
+                var pattern = patterns[i];
+                int numOfStates = (pattern.Length + 1) * (maxErrors + 1);
+                
+                var activeStates = new Queue<(int stateIdx, int patternIdx)>();
+                activeStates.Enqueue((1, 0));
 
-//    public IEnumerable<int> GetMatches(string input, int maxErrors)
-//    {
-//        HashSet<int> currentStates = new HashSet<int>();
-//        HashSet<int> nextStates = new HashSet<int>();
+                while (activeStates.Count > 0)
+                {
+                    var activeState = activeStates.Dequeue();
 
-//        currentStates.Add(startState);
+                    int stateNumber = activeState.stateIdx;
+                    int patternIdx = activeState.patternIdx;
 
-//        for (int i = 0; i < input.Length; i++)
-//        {
-//            foreach (int state in currentStates)
-//            {
-//                for (int j = 0; j < alphabetSize; j++)
-//                {
-//                    if (transitions[state, j] != -1)
-//                    {
-//                        nextStates.Add(transitions[state, j]);
-//                    }
-//                }
-//            }
+                    if (stateNumber % (pattern.Length + 1) == 0)
+                    {
+                        results.Add((pattern, (stateNumber / (pattern.Length + 1)) - 1));
+                        break;
+                    }
 
-//            currentStates = nextStates;
-//            nextStates = new HashSet<int>();
+                    if ((patternIdx < pattern.Length) && (text[(stateNumber - 1) % (pattern.Length + 1)] == pattern[patternIdx]))
+                        activeStates.Enqueue((stateNumber + 1, patternIdx + 1));
 
-//            if (currentStates.Count == 0)
-//            {
-//                break;
-//            }
-//        }
+                    var statePlusLength = stateNumber + pattern.Length;
 
-//        for (int i = 0; i <= maxErrors; i++)
-//        {
-//            foreach (int state in currentStates)
-//            {
-//                if (finalStates.Contains(state))
-//                {
-//                    yield return i;
-//                }
-//            }
+                    if (statePlusLength + 1 <= numOfStates)
+                    {
+                        activeStates.Enqueue((statePlusLength + 1, patternIdx));
+                        activeStates.Enqueue((statePlusLength + 1, patternIdx + 1));
+                    }
 
-//            HashSet<int> newCurrentStates = new HashSet<int>();
+                    if (statePlusLength + 2 <= numOfStates)
+                    {
+                        activeStates.Enqueue((statePlusLength + 2, patternIdx));
+                        activeStates.Enqueue((statePlusLength + 2, patternIdx + 1));
+                    } 
+                }
+            }
 
-//            foreach (int state in currentStates)
-//            {
-//                for (int j = 0; j < alphabetSize; j++)
-//                {
-//                    if (transitions[state, j] != -1)
-//                    {
-//                        newCurrentStates.Add(transitions[state, j]);
-//                    }
-//                }
-//            }
+            Console.WriteLine(text);
+            Console.WriteLine();
+            results.ForEach(x => Console.WriteLine($"{x.pattern} [{x.errors}]"));
 
-//            currentStates = newCurrentStates;
-//        }
-//    }
-//}
-
-//class Program
-//{
-//    static void Main()
-//    {
-//        int[,] transitions = new int[,] { { 1, -1, -1 }, { 2, 1, -1 }, { 3, -1, 1 }, { 3, 3, 3 } };
-//        int startState = 0;
-//        int[] finalStates = new int[] { 3 };
-//        int alphabetSize = 3;
-
-//        NFA nfa = new NFA(transitions, startState, finalStates, alphabetSize);
-
-//        string input = "survey";
-//        int maxErrors = 2;
-
-//        IEnumerable<int> matches = nfa.GetMatches(input, maxErrors);
-
-//        foreach (int match in matches)
-//        {
-//            Console.WriteLine("Match found with {0} errors.", match);
-//        }
-
-//        Console.ReadLine();
-//    }
-//}
+            Console.ReadLine();
+        }
+    }
+}
