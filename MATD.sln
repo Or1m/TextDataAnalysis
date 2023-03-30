@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApproximatePatternMatching"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Preprocess", "Preprocess\Preprocess.csproj", "{58B0DBBC-A471-4C62-9E55-D18EB568EE73}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InvertedIndex", "InvertedIndex\InvertedIndex.csproj", "{F7AFC80B-F747-4AA3-B902-A137C7A97297}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{58B0DBBC-A471-4C62-9E55-D18EB568EE73}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{58B0DBBC-A471-4C62-9E55-D18EB568EE73}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{58B0DBBC-A471-4C62-9E55-D18EB568EE73}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F7AFC80B-F747-4AA3-B902-A137C7A97297}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F7AFC80B-F747-4AA3-B902-A137C7A97297}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F7AFC80B-F747-4AA3-B902-A137C7A97297}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F7AFC80B-F747-4AA3-B902-A137C7A97297}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
