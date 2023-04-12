@@ -150,25 +150,59 @@ namespace VectorModel
             NormalizeCols(matrix_idf, rows, cols);
             results_idf = GetTopWithNames(10, GetSimilarities(matrix_idf, rows, cols, documentIdx)); ;
         }
-        public List<(string first, string second, int similarity)> FindSimilarWords()
+        public List<(string first, string second, double similarity)> FindSimilarWords(int number = 0)
         {
-            int rows = termFrequency_td.Count;
             int cols = inputFileNames.Length;
+            var results = new List<(string first, string second, double similarity)>();
 
-            foreach (var wordRow in termFrequency_td)
+            foreach (var wordRowA in termFrequency_td)
             {
+                double maxDotProduct = 0;
+                string maxSecond = string.Empty;
 
-                foreach (var fileCount in wordRow.Value)
+                foreach (var wordRowB in termFrequency_td)
                 {
+                    if (wordRowA.Key == wordRowB.Key)
+                        continue;
 
+                    var tempMatrix = new double[][]
+                    {
+                        GetFixedSizeRow(cols, wordRowA),
+                        GetFixedSizeRow(cols, wordRowB)
+                    };
+
+                    NormalizeRows(tempMatrix, 2, cols);
+                    var dot = CalcDotPoduct(tempMatrix[0], tempMatrix[1]);
+
+                    if (dot > maxDotProduct)
+                    {
+                        maxDotProduct = dot;
+                        maxSecond = wordRowB.Key;
+                    }
                 }
+
+                results.Add((wordRowA.Key, maxSecond, maxDotProduct));
+
+                if (number > 0 && results.Count >= number)
+                    break;
             }
 
-
-
-            return null;
+            return results;
         }
-        
+
+        private double[] GetFixedSizeRow(int cols, KeyValuePair<string, Dictionary<int, int>> wordRow)
+        {
+            double[] row = new double[cols];
+            for (int i = 0; i < cols; i++)
+            {
+                if (!wordRow.Value.ContainsKey(i))
+                    row[i] = 0;
+                else
+                    row[i] = wordRow.Value[i];
+            }
+
+            return row;
+        }
 
         private List<(int document, double dot)> GetSimilarities(double[][] matrix, int rows, int cols, int documentIdx)
         {

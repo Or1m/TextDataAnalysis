@@ -18,25 +18,27 @@ namespace VectorModel
             model.Create();
 
 #if Similarity
-            //model.FindSimilarDocument(0, out string documentName, out var results_tf, out var results_idf);
+            model.FindSimilarDocument(0, out string documentName, out var results_tf, out var results_idf);
 
-            //Console.WriteLine($"Top 10 documents similar to {documentName} according to TF:\n");
-            //foreach (var (fileName, score) in results_tf)
-            //    Console.WriteLine($"{fileName,-12} ({score:0.00})");
+            Console.WriteLine($"Top 10 documents similar to {documentName} according to TF:\n");
+            foreach (var (fileName, score) in results_tf)
+                Console.WriteLine($"{fileName,-12} ({score:0.00})");
 
-            //Console.WriteLine(new string('-', 20));
-            //Console.WriteLine();
+            Console.WriteLine(new string('-', 20));
+            Console.WriteLine();
 
-            //Console.WriteLine($"Top 10 documents similar to {documentName} according to TF_IDF:\n");
-            //foreach (var (fileName, score) in results_idf)
-            //    Console.WriteLine($"{fileName,-12} ({score:0.00})");
+            Console.WriteLine($"Top 10 documents similar to {documentName} according to TF_IDF:\n");
+            foreach (var (fileName, score) in results_idf)
+                Console.WriteLine($"{fileName,-12} ({score:0.00})");
 
-            //Console.WriteLine(new string('-', 20));
-            //Console.WriteLine();
+            Console.WriteLine(new string('-', 20));
+            Console.WriteLine();
 
-            var results = model.FindSimilarWords();
+            var results = model.FindSimilarWords(10);
             foreach (var (first, second, similarity) in results)
-                Console.WriteLine($"{first} -> {second} ({similarity})");
+                Console.WriteLine($"{first, -12} -> {second, -12} ({similarity:0.00})");
+
+            Console.WriteLine("\nDONE...");
 #else
             var results = model.Search("god"); 
             //var results = model.Search("Names of the Persons voting for and against the Bill shall be entered on the Journal of each House respectively");
