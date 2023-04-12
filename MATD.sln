@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.3.32929.385
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExactPatternMatching", "MATD\ExactPatternMatching.csproj", "{D21637E7-E256-4781-B822-B328E30DF7B7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExactPatternMatching", "ExactPatternMatching\ExactPatternMatching.csproj", "{D21637E7-E256-4781-B822-B328E30DF7B7}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApproximatePatternMatching", "ApproximatePatternMatching\ApproximatePatternMatching.csproj", "{C972BD23-CA6E-49CB-9162-A5E4D5C82D85}"
 EndProject
