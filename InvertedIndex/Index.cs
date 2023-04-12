@@ -41,6 +41,22 @@ namespace InvertedIndex
             Console.WriteLine(new string('-', 13));
             Console.WriteLine();
         }
+        private void CreateFromFile(string inputFileName, int fileIdx)
+        {
+            var text = File.ReadAllText(inputPath + inputFileName).Split(' ');
+
+            int length = text.Length;
+            for (int i = 0; i < length; i++)
+            {
+                string word = text[i];
+
+                if (!resultIndex.ContainsKey(word))
+                    resultIndex[word] = new SortedSet<int>();
+
+                resultIndex[word].Add(fileIdx);
+            }
+        }
+
         public string[] Search(string pattern)
         {
             string[] words = GetStemmedWordsFromPattern(pattern);
@@ -61,23 +77,6 @@ namespace InvertedIndex
                 .Select(x => inputFileNames[x])
                 .ToArray();
         }
-
-        private void CreateFromFile(string inputFileName, int fileIdx)
-        {
-            var text = File.ReadAllText(inputPath + inputFileName).Split(' ');
-
-            int length = text.Length;
-            for (int i = 0; i < length; i++)
-            {
-                string word = text[i];
-
-                if (!resultIndex.ContainsKey(word))
-                    resultIndex[word] = new SortedSet<int>();
-
-                resultIndex[word].Add(fileIdx);
-            }
-        }
-
         private string[] GetStemmedWordsFromPattern(string pattern)
         {
             var stemmer = new PorterStemmer();

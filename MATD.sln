@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Preprocess", "Preprocess\Pr
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InvertedIndex", "InvertedIndex\InvertedIndex.csproj", "{F7AFC80B-F747-4AA3-B902-A137C7A97297}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VectorModel", "VectorModel\VectorModel.csproj", "{5FB15B4C-F9F6-4809-8810-3F16173E662B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{F7AFC80B-F747-4AA3-B902-A137C7A97297}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F7AFC80B-F747-4AA3-B902-A137C7A97297}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F7AFC80B-F747-4AA3-B902-A137C7A97297}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5FB15B4C-F9F6-4809-8810-3F16173E662B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5FB15B4C-F9F6-4809-8810-3F16173E662B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5FB15B4C-F9F6-4809-8810-3F16173E662B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5FB15B4C-F9F6-4809-8810-3F16173E662B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
